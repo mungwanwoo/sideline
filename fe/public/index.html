@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOOD FOOD</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <header class="bg-white shadow-md p-4 flex justify-between items-center">
+        <div class="text-2xl font-bold">MOOD FOOD</div>
+        <div class="text-sm" id="weatherInfo">날씨: 로딩 중...</div>
+        <div class="space-x-4">
+            <span>🔍</span>
+            <span>👤</span>
+            <span>🔔</span>
+        </div>
+    </header>
+    <section class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center mb-6">오늘 기분이 어때요?</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-semibold mb-4">긍정적인 감정</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="mood-btn bg-blue-100 p-2 rounded-lg" data-mood="행복해요">😊 행복해요</button>
+                    <button class="mood-btn bg-pink-100 p-2 rounded-lg" data-mood="설레요">💖 설레요</button>
+                    <button class="mood-btn bg-yellow-100 p-2 rounded-lg" data-mood="신나요">🎉 신나요</button>
+                    <button class="mood-btn bg-green-100 p-2 rounded-lg" data-mood="평온해요">😌 평온해요</button>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-semibold mb-4">부정적인 감정</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="mood-btn bg-gray-200 p-2 rounded-lg" data-mood="슬퍼요">😢 슬퍼요</button>
+                    <button class="mood-btn bg-red-200 p-2 rounded-lg" data-mood="화나요">😡 화나요</button>
+                    <button class="mood-btn bg-purple-200 p-2 rounded-lg" data-mood="피곤해요">😓 피곤해요</button>
+                    <button class="mood-btn bg-gray-300 p-2 rounded-lg" data-mood="무기력해요">😔 무기력해요</button>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="font-semibold mb-4">기타 감정</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <button class="mood-btn bg-blue-200 p-2 rounded-lg" data-mood="답답해요">😖 답답해요</button>
+                    <button class="mood-btn bg-green-200 p-2 rounded-lg" data-mood="지루해요">😑 지루해요</button>
+                    <button class="mood-btn bg-yellow-200 p-2 rounded-lg" data-mood="긴장돼요">😰 긴장돼요</button>
+                    <button class="mood-btn bg-pink-200 p-2 rounded-lg" data-mood="당황스러워요">😳 당황스러워요</button>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-6">
+            <input type="text" id="moodText" class="border p-2 w-1/2 rounded-md" placeholder="기분을 자유롭게 입력하세요">
+            <button id="recommendFood" class="bg-blue-500 text-white p-2 rounded-md ml-2">음식 추천</button>
+        </div>
+    </section>
+    <section class="container mx-auto p-6" id="recommendation" style="display: none;">
+        <h2 class="text-2xl font-bold mb-4">추천 음식</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="foodListItems"></div>
+    </section>
+    <footer class="bg-gray-800 text-white text-center p-6 mt-12">
+        <div class="text-lg font-bold">MOOD FOOD</div>
+        <div class="space-x-4 mt-2">
+            <a href="#" class="text-gray-400">서비스 소개</a>
+            <a href="#" class="text-gray-400">이용 약관</a>
+            <a href="#" class="text-gray-400">개인정보 처리방침</a>
+            <a href="#" class="text-gray-400">고객센터</a>
+        </div>
+        <p class="text-gray-500 mt-4">© 2025 MOOD FOOD. All rights reserved.</p>
+    </footer>
+    <script src="../src/app.js"></script>
+</body>
+</html>
