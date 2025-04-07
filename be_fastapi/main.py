@@ -63,7 +63,7 @@ async def analyze_llm_emotion(input: MoodInput):
 
     async with httpx.AsyncClient() as client:
         response = await client.post(
-            "http://localhost:8000/api/recommend_food/",  
+            "http://43.201.23.61:8000/api/recommend_food/",  
             json={"mood": mood, "weather": weather}
         )
     
