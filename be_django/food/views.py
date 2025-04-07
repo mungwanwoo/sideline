@@ -1,4 +1,6 @@
-from langchain.chat_models import ChatOpenAI
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+from langchain_community.chat_models import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from .models import FoodRestaurant,Food
@@ -8,6 +10,10 @@ from rest_framework.response import Response
 from rest_framework import status
 import os
 from dotenv import load_dotenv
+from .weather_api import WeatherAPI
+import json
+from django.http import JsonResponse
+
 load_dotenv()
 @api_view(['POST'])
 def recommend_food(request):
@@ -64,3 +70,26 @@ def recommend_food(request):
 
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@csrf_exempt
+def get_weather(request):
+    if request.method == "POST":
+        # JSON 데이터 처리
+        try:
+            if request.content_type == "application/json":
+                data = json.loads(request.body)
+                lat = data.get("latitude")
+                lon = data.get("longitude")
+            else:
+                lat = request.POST.get("latitude")
+                lon = request.POST.get("longitude")
+            
+            if not lat or not lon:
+                return JsonResponse({"error": "latitude와 longitude가 필요합니다."}, status=400)
+            
+            weather_api = WeatherAPI()
+            weather = weather_api.get_weather(float(lat), float(lon))
+            return JsonResponse({"weather": weather}, status=200)
+        except json.JSONDecodeError:
+            return JsonResponse({"error": "잘못된 JSON 형식입니다."}, status=400)
+    return JsonResponse({"error": "POST 요청만 허용됩니다."}, status=405)
