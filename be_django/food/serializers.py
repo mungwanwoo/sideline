@@ -1,7 +1,12 @@
 from rest_framework import serializers
-from .models import FoodRecommendation
+from .models import Food, FoodRestaurant
 
-class FoodRecommendationSerializer(serializers.ModelSerializer):
+class FoodSerializer(serializers.ModelSerializer):
     class Meta:
-        model = FoodRecommendation
-        fields = ['name', 'category', 'details', 'address', 'is_ad', 'created_at']
+        model = Food
+        fields = ['id', 'name']
+
+class FoodRestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodRestaurant
+        fields = ['id', 'food', 'category', 'details', 'address', 'is_ad', 'created_at']

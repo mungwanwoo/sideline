@@ -19,5 +19,5 @@ from django.urls import path, include
 from food import views
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('myapp.urls')),  # 앱 내 URL로 라우팅
+    path('api/', include('food.urls')),  # 앱 내 URL로 라우팅
 ]
